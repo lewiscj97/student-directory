@@ -1,17 +1,23 @@
 def input_students
-  puts "Enter the name of the students"
+  puts "Enter the name of the student, followed by their age"
   puts "Press enter twice to exit"
 
   # Create empty array
   students = []
 
   # Get input from user
-  input = gets.chomp
+  name = gets.chomp
+  age = gets.chomp
   
   # Check if input is empty - if it is, return the array
-  while !input.empty? do
+  while !name.empty? do
+    while age.empty?
+      puts "Please enter the age!"
+      age = gets.chomp
+    end
+
     # Add student to array
-    students << {name: input, cohort: :November}
+    students << {name: name, age: age, cohort: :November}
 
     # Print the number of students
     if students.count == 1
@@ -21,10 +27,10 @@ def input_students
     end
     
     # Get a new input
-    input = gets.chomp
+    name = gets.chomp
+    age = gets.chomp
   end
-
-  return students
+  students
 end
 
 def print_header
@@ -34,7 +40,7 @@ end
 
 def print(students)
   students.each.with_index(1) do |student, index|
-    puts "#{index}. #{student[:name]}: #{student[:cohort]} cohort"
+    puts "#{index}. #{student[:name]}, #{student[:age]}: #{student[:cohort]} cohort"
   end
 end
 
