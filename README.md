@@ -10,7 +10,7 @@ ruby directory_final.rb
 ruby directory_final.rb <filename>
 ```
 
-If no filename is passed on startup, then a blank database will be created and the interactive menu will be launched.
+If no filename is passed on startup, by default the program will attempt to load a file called 'students.csv' into the in-memory database.
 
 Passing the filename on startup will cause the program to attempt to load student information from the file into the in-memory database. The interactive menu is subsequently launched.
 
