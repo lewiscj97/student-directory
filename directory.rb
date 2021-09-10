@@ -34,9 +34,7 @@ end
 
 def print(students)
   students.each.with_index(1) do |student, index|
-    if student[:name].char == "s"
-      puts "#{index}. #{student[:name]}: #{student[:cohort]} cohort"  
-    end
+    puts "#{index}. #{student[:name]}: #{student[:cohort]} cohort"
   end
 end
 
