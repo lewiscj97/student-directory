@@ -42,6 +42,28 @@ def print_students(students)
   end
 end
 
+def print_students_by_cohort(students)
+  hash = collect_students_into_hash(students)
+  hash.each do |cohort, students|
+    puts "#{cohort.to_s} Cohort".center(50)
+    students.each.with_index(1) do |student, index|
+      puts "#{index}. #{student}".center(50)
+    end
+  end
+end
+
+def collect_students_into_hash(students)
+  hash = {}
+  students.each do |student|
+    if !hash.key?(student[:cohort])
+      hash[student[:cohort]] = [student[:name]]
+    else
+      hash[student[:cohort]].push(student[:name])
+    end
+  end
+  hash
+end
+
 def print_footer(students)
   if students.count == 1
     puts "Overall, we have #{students.count} great student!".center(50)
@@ -53,5 +75,6 @@ end
 # Call methods to run program
 students = input_students()
 print_header
-print_students(students)
+# print_students(students)
+print_students_by_cohort(students)
 print_footer(students)
