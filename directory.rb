@@ -1,27 +1,22 @@
 def input_students
-  puts "Enter the name of the students"
+  puts "Enter the name of the student, followed by their cohort"
   puts "Press enter twice to exit"
 
   # Create empty array
   students = []
 
   # Get input from user
-  input = gets.chomp
+  name, cohort = get_user_input
   
   # Check if input is empty - if it is, return the array
-  while !input.empty? do
+  while !name.empty? do
     # Add student to array
-    students << {name: input, cohort: :November}
+    cohort.empty? ? (students << {name: name, cohort: :November}) : (students << {name: name, cohort: cohort.capitalize.to_sym})
 
     # Print the number of students
-    if students.count == 1
-      puts "Now we have #{students.count} student"
-    else
-      puts "Now we have #{students.count} students"
-    end
+    students.count == 1 ? (puts "Now we have #{students.count} student") : (puts "Now we have #{students.count} students")
     
-    # Get a new input
-    input = gets.chomp
+    name, cohort = get_user_input
   end
 
   return students
@@ -32,7 +27,15 @@ def print_header
   puts "".center(50, "-")
 end
 
-def print(students)
+def get_user_input
+  print("Name: ")
+  name = gets.chomp
+  print("Cohort: ")
+  cohort = gets.chomp
+  return name, cohort
+end
+
+def print_students(students)
   students.each.with_index(1) do |student, index|
     puts "#{index}. #{student[:name]}: #{student[:cohort]} cohort".center(50)
   end
@@ -49,5 +52,5 @@ end
 # Call methods to run program
 students = input_students()
 print_header
-print(students)
+print_students(students)
 print_footer(students)
