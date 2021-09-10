@@ -1,10 +1,17 @@
-student_count = 3
+# Array of students
+students = [
+  "Hannibal Lecter",
+  "Darth Vadar",
+  "Terminator"
+]
+student_count = students.count
+
 # Print list of students
 puts "The students of Villains Academy"
 puts "-------------------"
-puts "Hannibal Lecter"
-puts "Darth Vadar"
-puts "Terminator"
+students.each do |student|
+  puts student
+end
 
 # Print total number of students
 puts "Overall, we have #{student_count} great students!"
