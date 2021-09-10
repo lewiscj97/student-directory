@@ -57,11 +57,11 @@ end
 def collect_students_into_hash(students)
   hash = {}
   students.each do |student|
-    !hash.key?(student[:cohort]) ? (hash[student[:cohort]] = [student[:name]]) : (hash[student[:cohort]].push(student[:name]))
-    #   hash[student[:cohort]] = [student[:name]]
-    # else
-    #   hash[student[:cohort]].push(student[:name])
-    # end
+    if !hash.key?(student[:cohort]) 
+      hash[student[:cohort]] = [student[:name]]
+    else
+      hash[student[:cohort]].push(student[:name])
+    end
   end
   hash
 end
@@ -78,7 +78,7 @@ end
 
 def main(cohort = "n")
   if cohort != "n" && cohort != "y"
-    puts "You must enter either 'y' or 'n'"
+    puts "You must enter either 'y', 'n' or leave this blank"
   else
     students = input_students()
     print_header(students)
