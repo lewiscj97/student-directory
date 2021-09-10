@@ -2,6 +2,7 @@ ERROR_MESSAGE = "I don't know what you mean, try again!"
 @students = []
 
 def interactive_menu
+  try_load_students
   loop do
     print_menu
     process(get_input)
@@ -35,7 +36,7 @@ end
 
 def get_input
   print "Enter your option: "
-  selection = gets.chomp
+  selection = STDIN.gets.chomp
 end
 
 def print_output()
@@ -48,14 +49,14 @@ def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   # get the first name
-  name = gets.chomp
+  name = STDIN.gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
     @students << {name: name, cohort: :november}
     puts "Now we have #{@students.count} students"
     # get another name from the user
-    name = gets.chomp
+    name = STDIN.gets.chomp
   end
 end
 
@@ -90,9 +91,9 @@ def save_students
   file.close
 end
 
-def load_students
+def load_students(filename = "students.csv")
   # Open in read mode
-  file = File.open("students.csv", "r")
+  file = File.open(filename, "r")
   # Read each line into an array and iterate over the array with eaech
   file.readlines.each do |line|
     # The array is a string e.g. "Lewis, november". Remove any \n etc with chomp and split at the comma and save into variables
@@ -102,6 +103,18 @@ def load_students
   end
   # Close the file
   file.close
+end
+
+def try_load_students
+  filename = ARGV.first
+  return if filename.nil?
+  if File.exists?(filename)
+    load_students(filename)
+    puts "Loaded #{@students.count} students from #{filename}"
+  else
+    puts "Sorry, #{filename} doesn't exist."
+    exit
+  end
 end
 
 interactive_menu()
