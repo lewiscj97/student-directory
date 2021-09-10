@@ -22,10 +22,12 @@ def input_students
   return students
 end
 
-def print_header
-  puts "".center(50, "-")
-  puts "The students of Villains Academy".center(50)
-  puts "".center(50, "-")
+def print_header(students)
+  if !students.empty?
+    puts "".center(50, "-")
+    puts "The students of Villains Academy".center(50)
+    puts "".center(50, "-")
+  end
 end
 
 def get_user_input
@@ -37,8 +39,10 @@ def get_user_input
 end
 
 def print_students(students)
-  students.each.with_index(1) do |student, index|
-    puts "#{index}. #{student[:name]}: #{student[:cohort]} cohort".center(50)
+  if !students.empty?
+    students.each.with_index(1) do |student, index|
+      puts "#{index}. #{student[:name]}: #{student[:cohort]} cohort".center(50)
+    end
   end
 end
 
@@ -65,16 +69,28 @@ def collect_students_into_hash(students)
 end
 
 def print_footer(students)
-  if students.count == 1
-    puts "Overall, we have #{students.count} great student!".center(50)
-  else
-    puts "Overall, we have #{students.count} great students!".center(50)
+  if !students.empty?
+    if students.count == 1
+      puts "Overall, we have #{students.count} great student!".center(50)
+    else
+      puts "Overall, we have #{students.count} great students!".center(50)
+    end
   end
 end
 
-# Call methods to run program
-students = input_students()
-print_header
-# print_students(students)
-print_students_by_cohort(students)
-print_footer(students)
+def main(cohort = "n")
+  if cohort != "n" && cohort != "y"
+    puts "You must enter either 'y' or 'n'"
+  else
+    students = input_students()
+    print_header(students)
+    if cohort == "n"
+      print_students(students)
+    elsif cohort == "y"
+      print_students_by_cohort(students)
+    end
+    print_footer(students)  
+  end
+end
+
+main()
