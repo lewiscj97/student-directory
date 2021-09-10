@@ -1,7 +1,7 @@
 students = [
-  "Hannibal Lecter",
-  "Darth Vadar",
-  "Terminator"
+  {name: "Hannibal Lecter", cohort: :November},
+  {name: "Darth Vadar", cohort: :November},
+  {name: "Terminator", cohort: :November}
 ]
 
 def print_header
@@ -11,7 +11,7 @@ end
 
 def print(students)
   students.each do |student|
-    puts student
+    puts "#{student[:name]}: #{student[:cohort]} cohort"
   end
 end
 
