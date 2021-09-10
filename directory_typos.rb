@@ -4,17 +4,20 @@ ERROR_MESSAGE = "I don't know what you mean, try again!"
 def interactive_menu
   loop do
     print_menu
-    selection = get_input
-    case selection
-      when "1"
-        input_students
-      when "2"
-        print_output()
-      when "9"
-        exit
-      else
-        puts ERROR_MESSAGE
-    end
+    process(get_input)
+  end
+end
+
+def process(selection)
+  case selection
+  when "1"
+    input_students
+  when "2"
+    print_output()
+  when "9"
+    exit
+  else
+    puts ERROR_MESSAGE
   end
 end
 
@@ -27,7 +30,6 @@ end
 def get_input
   print "Enter your option: "
   selection = gets.chomp
-  selection
 end
 
 def print_output()
