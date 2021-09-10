@@ -52,8 +52,7 @@ def input_students
   name = STDIN.gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
-    # add the student hash to the array
-    @students << {name: name, cohort: :november}
+    add_hash_to_students_instance(name)
     puts "Now we have #{@students.count} students"
     # get another name from the user
     name = STDIN.gets.chomp
@@ -99,10 +98,15 @@ def load_students(filename = "students.csv")
     # The array is a string e.g. "Lewis, november". Remove any \n etc with chomp and split at the comma and save into variables
     name, cohort = line.chomp.split(", ")
     # Add the hash to the students instance variable
-    @students << {name: name, cohort: cohort.to_sym}
+    add_hash_to_students_instance(name, cohort)
   end
   # Close the file
   file.close
+  puts "Loaded #{@students.count} students from #{filename}"
+end
+
+def add_hash_to_students_instance(name, cohort = :november)
+  @students << {name: name, cohort: cohort.to_sym}
 end
 
 def try_load_students
