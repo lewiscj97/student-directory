@@ -2,20 +2,18 @@ def input_students
   puts "Enter the name of the student, followed by their cohort"
   puts "Press enter twice to exit"
 
-  # Create empty array
   students = []
-
-  # Get input from user
   name, cohort = get_user_input
   
-  # Check if input is empty - if it is, return the array
   while !name.empty? do
-    # Add student to array
+    # If cohort empty, default to ':November'
+    # Otherwise, add the hash to the students array
     cohort.empty? ? (students << {name: name, cohort: :November}) : (students << {name: name, cohort: cohort.capitalize.to_sym})
 
-    # Print the number of students
+    # Print appropraite message based on count of students
     students.count == 1 ? (puts "Now we have #{students.count} student") : (puts "Now we have #{students.count} students")
     
+    # Loop
     name, cohort = get_user_input
   end
 
@@ -59,11 +57,11 @@ end
 def collect_students_into_hash(students)
   hash = {}
   students.each do |student|
-    if !hash.key?(student[:cohort])
-      hash[student[:cohort]] = [student[:name]]
-    else
-      hash[student[:cohort]].push(student[:name])
-    end
+    !hash.key?(student[:cohort]) ? (hash[student[:cohort]] = [student[:name]]) : (hash[student[:cohort]].push(student[:name]))
+    #   hash[student[:cohort]] = [student[:name]]
+    # else
+    #   hash[student[:cohort]].push(student[:name])
+    # end
   end
   hash
 end
@@ -93,4 +91,4 @@ def main(cohort = "n")
   end
 end
 
-main()
+main("y")
