@@ -16,6 +16,8 @@ def process(selection)
     print_output
   when "3"
     save_students
+  when "4"
+    load_students
   when "9"
     exit
   else
@@ -27,6 +29,7 @@ def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
   puts "3. Save the students to students.csv"
+  puts "4. Load the students from students.csv"
   puts "9. Exit"
 end
 
@@ -82,6 +85,20 @@ def save_students
     csv_line = student_data.join(", ")
     # Writes the string to the file
     file.puts csv_line
+  end
+  # Close the file
+  file.close
+end
+
+def load_students
+  # Open in read mode
+  file = File.open("students.csv", "r")
+  # Read each line into an array and iterate over the array with eaech
+  file.readlines.each do |line|
+    # The array is a string e.g. "Lewis, november". Remove any \n etc with chomp and split at the comma and save into variables
+    name, cohort = line.chomp.split(", ")
+    # Add the hash to the students instance variable
+    @students << {name: name, cohort: cohort.to_sym}
   end
   # Close the file
   file.close
