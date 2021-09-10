@@ -1,17 +1,25 @@
-# Array of students
 students = [
   "Hannibal Lecter",
   "Darth Vadar",
   "Terminator"
 ]
-student_count = students.count
 
-# Print list of students
-puts "The students of Villains Academy"
-puts "-------------------"
-students.each do |student|
-  puts student
+def print_header
+  puts "The students of Villains Academy"
+  puts "-------------------"
 end
 
-# Print total number of students
-puts "Overall, we have #{student_count} great students!"
+def print(students)
+  students.each do |student|
+    puts student
+  end
+end
+
+def print_footer(students)
+  puts "Overall, we have #{students.count} great students!"
+end
+
+# Call methods to run program
+print_header
+print(students)
+print_footer(students)
