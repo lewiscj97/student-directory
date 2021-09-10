@@ -13,7 +13,9 @@ def process(selection)
   when "1"
     input_students
   when "2"
-    print_output()
+    print_output
+  when "3"
+    save_students
   when "9"
     exit
   else
@@ -24,6 +26,7 @@ end
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
+  puts "3. Save the students to students.csv"
   puts "9. Exit"
 end
 
@@ -66,6 +69,22 @@ end
 
 def print_footer()
   puts "Overall, we have #{@students.count} great students"
+end
+
+def save_students
+  # Open a new csv file called students.csv in write mode
+  file = File.open("students.csv", "w")
+  # iterate through the students array
+  @students.each do |student|
+    # Create a new array with the student name and cohort
+    student_data = [student[:name], student[:cohort]]
+    # Join the data into a string with a comma delimiter
+    csv_line = student_data.join(", ")
+    # Writes the string to the file
+    file.puts csv_line
+  end
+  # Close the file
+  file.close
 end
 
 interactive_menu()
