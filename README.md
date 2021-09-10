@@ -5,9 +5,9 @@ The student directory script allows you to manage the list of enrolled students.
 ## How to use
 
 ```shell
-ruby directory.rb
+ruby directory_final.rb
 
-ruby directory.rb <filename>
+ruby directory_final.rb <filename>
 ```
 
 If no filename is passed on startup, then a blank database will be created and the interactive menu will be launched.
