@@ -28,6 +28,8 @@ def process(selection)
   when "4"
     puts "Selected option 4. Loading students..."
     load_students
+  when "5"
+    print_source_code
   when "9"
     exit
   else
@@ -40,6 +42,7 @@ def print_menu
   puts "2. Show the students"
   puts "3. Save the students"
   puts "4. Load the students from students.csv"
+  puts "5. Print source code"
   puts "9. Exit"
 end
 
@@ -122,6 +125,12 @@ def try_load_students
   else
     puts "Sorry, #{filename} doesn't exist."
     exit
+  end
+end
+
+def print_source_code
+  File.open(__FILE__, "r") do |file|
+    puts file.read
   end
 end
 
