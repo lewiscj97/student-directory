@@ -26,11 +26,14 @@ This launches an interface where the students name is added to the in-memory dat
 
 This shows in the terminal the current students in the database.
 
-* 3: Save the students to students.csv
+* 3: Save the students
 
-This saves any students in the in-memory database to the students.csv file.
+This saves any students to a file. If no file is specified, the `students.csv` file will be used.
 
 * 4: Load the students from students.csv
 
 This loads the data manually from students.csv. This is useful if a database already exists, but it wasn't loaded on startup.
 
+* 5: Print source sode
+
+This prints the source code for the current file in the terminal.
