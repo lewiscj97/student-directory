@@ -89,33 +89,22 @@ def save_students
   else
     filename = filename + ".csv"
   end
-  # Open a new csv file called students.csv in write mode
-  file = File.open(filename, "w")
-  # iterate through the students array
-  @students.each do |student|
-    # Create a new array with the student name and cohort
-    student_data = [student[:name], student[:cohort]]
-    # Join the data into a string with a comma delimiter
-    csv_line = student_data.join(", ")
-    # Writes the string to the file
-    file.puts csv_line
+  File.open(filename, "w") do |file|
+    @students.each do |student|
+      student_data = [student[:name], student[:cohort]]
+      csv_line = student_data.join(", ")
+      file.puts csv_line
+    end
   end
-  # Close the file
-  file.close
 end
 
 def load_students(filename = "students.csv")
-  # Open in read mode
-  file = File.open(filename, "r")
-  # Read each line into an array and iterate over the array with eaech
-  file.readlines.each do |line|
-    # The array is a string e.g. "Lewis, november". Remove any \n etc with chomp and split at the comma and save into variables
-    name, cohort = line.chomp.split(", ")
-    # Add the hash to the students instance variable
-    add_hash_to_students_instance(name, cohort)
+  File.open(filename, "r") do |file|
+    file.readlines.each do |line|
+      name, cohort = line.chomp.split(", ")
+      add_hash_to_students_instance(name, cohort)
+    end
   end
-  # Close the file
-  file.close
   puts "Loaded #{@students.count} students from #{filename}"
 end
 
