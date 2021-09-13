@@ -12,12 +12,19 @@ end
 def process(selection)
   case selection
   when "1"
+    puts "Selected option 1. Inputting students..."
     input_students
+    puts "Finished inputting students..."
   when "2"
+    puts "Selected option 2. Showing students..."
     print_output
+    puts "Finished showing students..."
   when "3"
+    puts "Selected option 3. Saving students..."
     save_students
+    puts "Finished saving students..."
   when "4"
+    puts "Selected option 4. Loading students..."
     load_students
   when "9"
     exit
