@@ -36,7 +36,7 @@ end
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
-  puts "3. Save the students to students.csv"
+  puts "3. Save the students"
   puts "4. Load the students from students.csv"
   puts "9. Exit"
 end
@@ -82,8 +82,15 @@ def print_footer()
 end
 
 def save_students
+  print "Enter filename (without .csv) - leave blank for default: "
+  filename = gets.chomp
+  if filename.empty?
+    filename = "students.csv"
+  else
+    filename = filename + ".csv"
+  end
   # Open a new csv file called students.csv in write mode
-  file = File.open("students.csv", "w")
+  file = File.open(filename, "w")
   # iterate through the students array
   @students.each do |student|
     # Create a new array with the student name and cohort
